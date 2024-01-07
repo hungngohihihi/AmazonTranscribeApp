@@ -1,9 +1,18 @@
 # Import necessary libraries 
 from pydub import AudioSegment 
+import os
   
 # Input audio file to be sliced 
 # audio = AudioSegment.from_wav("/full/path/filename.wav") 
-audio = AudioSegment.from_wav("output.wav") 
+
+# Lấy đường dẫn của thư mục script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Thay đổi thư mục làm việc
+os.chdir(script_dir)
+
+# Sử dụng đường dẫn tương đối
+audio = AudioSegment.from_wav("output.wav")
 
 # Length of the audiofile in milliseconds 
 n = len(audio) 
