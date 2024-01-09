@@ -55,11 +55,8 @@
                     <ul class="nav navbar-nav">
                         <li><a href="#" class="scroll-top">Home</a></li>
                         <li><a href="#" class="scroll-link" data-id="Transcribe-To-Text">Transcribe To Text</a></li>
-                        <!-- <li><a href="#" class="scroll-link" data-id="Speech-To-Write">Speech To Write</a></li> -->
-                        <li><a href="#" class="scroll-link" data-id="Translate-input">Translate</a></li>
-                        <!-- <li><a href="#" class="scroll-link" data-id="Assistant">Assistant</a></li> -->
-                        <!-- <li><a href="#" class="scroll-link" class="scroll-link" data-id="Translate-input">Translate</a> -->
-                        <!-- <li><a href="./translate.html#Translate-input" data-id="Translate-input">Translate</a></li> -->
+                        <li><a href="#" class="scroll-link" data-id="Input-file">Input-file</a></li>
+                        <!-- <li><a href="#" class="scroll-link" data-id="Translate-input">Translate</a></li> -->
                         </li>
                     </ul>
                 </div>
@@ -107,7 +104,7 @@
 
     <!--File input start nut khac-->
 
-    <!-- <section id="Input-file">
+    <section id="Input-file">
         <div class="container">
             <div class="row" style="display: flex;flex-direction: column;">
                 <div style="display: flex;justify-content: space-between;">
@@ -137,10 +134,10 @@
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
 
-    <section id="Translate-input">
+    <!-- <section id="Translate-input">
         <div class="container">
             <div class="row" style="display: flex;flex-direction: column;">
                 <div>
@@ -162,14 +159,12 @@
 
                         <i class="far fa-hand-point-right fa-5x" style="align-self:center"></i>
 
-                        
                         <div class="ketqua" id="ketquanha" placeholder="Translated ..." rows="5"
                             style="width: 500px; border: 1px solid #000; background-color: white; border-radius: 5px; padding: 10px; margin: 0px; height: 200px;">
                             <span id="translated" style="
                             font-size: 14px;  text-align: left;">
                             </span>
                         </div>
-                    
 
                     </div>
                     <div class="notranslate" style="display:flex;justify-content:left; margin-top: 20px;">
@@ -194,64 +189,7 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- 
-    <section id="Translate-input">
-        <div class="container">
-            <div class="row" style="display: flex;flex-direction: column;">
-                <div>
-                    <div id="google_translate_element">
-                    </div>
-                    <script type="text/javascript">
-                        function googleTranslateElementInit() {
-                            console.log("googleTranslateElementInit() has been called.");
-                            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
-                        }
-                    </script>
-
-                    <div style="display: flex;justify-content: space-between;">
-                        <textarea id="transcript" placeholder="Press Start and speak into your mic" rows="5"
-                            readonly="readonly"
-                            style="width: 500px; border-radius: 5px; padding: 10px; margin: 0px; height: 200px;"></textarea>
-                        <i class="far fa-hand-point-right fa-5x" style="align-self:center"></i>
-                        <span class="say-some-thing" style="
-                            font-size: 40px;
-                            color: white;
-                            text-transform: capitalize;
-                            font-weight: bold;
-                            position: relative;
-                            top: -92px;
-                            right: -152px;
-                            "> Translated</span>
-                        <span id="translated" style="
-                            font-size: 14px;
-                            "> Translated</span>
-                    </div>
-                    <div style="display:flex;justify-content:left; margin-top: 20px;">
-                        <button id="start-button" class="button-xl start-button" title="Start Transcription"
-                            style=" font-size: 25px;margin-right:6px; padding: 8px; border-radius: 10px;">
-                            <i class="fa fa-microphone"></i> Start
-                        </button>
-                        <button id="stop-button" class="button-xl stop-button" title="Stop Transcription"
-                            style=" font-size: 25px;margin-right:6px; padding: 8px; border-radius: 10px;"
-                            disabled="true"><i class="fa fa-stop-circle"></i> Stop
-                        </button>
-                        <button id="reset-button" class="button-xl button-secondary reset-button"
-                            style=" font-size: 25px;margin-right:6px; padding: 8px; border-radius: 10px;"
-                            title="Clear Transcript">
-                            Clear Transcript
-                        </button>
-                        <button id="translate-button" onclick="tran()" class="button-xl button-secondary reset-button"
-                            style=" font-size: 25px;margin-right:6px; padding: 8px; border-radius: 10px;">
-                            Translate
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section> -->
-
 
     <div class="signupSection">
         <div class="info">
