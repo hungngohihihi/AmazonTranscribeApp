@@ -13,7 +13,7 @@ body {
   background-repeat: no-repeat;
 }
 
-#input-file {
+#Input-file {
   background-color: #36d7b7;
   text-align: center;
   padding: 132px 0px;
@@ -61,7 +61,7 @@ body {
   background: url(https://source.unsplash.com/TV2gg2kZD1o/1600x800);
   background-repeat: no-repeat;
   position: absolute;
-  top: 24%;
+  top: 18%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 800px;
