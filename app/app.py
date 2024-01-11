@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 import subprocess
 import os
 
@@ -16,6 +16,21 @@ def run_script():
         return 'Script executed successfully.'
     except Exception as e:
         return f'Error executing script: {str(e)}'
+    
+@app.route('/output-file')
+def get_output_file():
+    try:
+        # Đường dẫn đến tệp output.txt
+        file_path = ('/Users/hung/Documents/GitHub/AmazonTranscribeApp/texts/output.txt')
+
+        # Trả về nội dung của tệp output.txt
+        with open(file_path, 'r') as file:
+            content = file.read()
+        
+        return content
+
+    except Exception as e:
+        return str(e)
 
 if __name__ == '__main__':
     app.run(debug=True)

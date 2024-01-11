@@ -51,6 +51,7 @@ import os
 import split_file
 # import mp3towav
 from split_file import *
+import sys 
 
 # Hàm chuyển đổi từ MP4 sang WAV
 def convert_mp4_to_wav(mp4_file, wav_file):
@@ -61,11 +62,12 @@ def convert_mp4_to_wav(mp4_file, wav_file):
 for x in range(1, counter):
     # mp4_file_path = "/Users/hung/Downloads/mp3totext-master/input{}.mp4".format(x)
     # wav_file_path = "/Users/hung/Downloads/mp3totext-master/input{}_converted.wav".format(x)
+
     print("\n\n\n")
-    run_script()
-    print("\n\n\n")
-    mp4_file_path = "/Users/hung/Documents/GitHub/AmazonTranscribeApp/uploads/input{}.mp4".format(x)
-    wav_file_path = "/Users/hung/Documents/GitHub/AmazonTranscribeApp/uploads/input{}_converted.wav".format(x)
+    # mp4_file_path = "/Users/hung/Documents/GitHub/AmazonTranscribeApp/uploads/{filename}".format(filename=filenameupload)
+    mp4_file_path = "/Users/hung/Documents/GitHub/AmazonTranscribeApp/uploads/input.mp4"
+    print(mp4_file_path)
+    wav_file_path = "/Users/hung/Documents/GitHub/AmazonTranscribeApp/uploads/input_converted.wav".format(x)
 
     # Chuyển đổi từ MP4 sang WAV
     convert_mp4_to_wav(mp4_file_path, wav_file_path)
@@ -78,9 +80,25 @@ for x in range(1, counter):
             audio = r.record(source)
         result = r.recognize_google(audio)
 
-        with open("output7.txt", "a") as f:
+        # Xóa file output.txt cũ nếu tồn tại
+        output_file_path = "/Users/hung/Documents/GitHub/AmazonTranscribeApp/texts/output.txt"
+        if os.path.exists(output_file_path):
+            os.remove(output_file_path)
+            print("Old output.txt has been deleted.")
+
+        # Tạo file output.txt mới
+        with open(output_file_path, "w") as new_file:
+            new_file.write("")  # Ghi một dòng trắng để tạo file mới
+
+        # Tiếp tục với việc ghi dữ liệu vào file mới
+        with open(output_file_path, "a") as f:
             f.write(result + '\n')
-        print("%d. audio file is done." % (x,))
+            print("New output.txt has been created.")
+            print("%d. audio file is done." % (x,))
+
+        # with open("/Users/hung/Documents/GitHub/AmazonTranscribeApp/texts/output.txt", "a") as f:
+        #     f.write(result + '\n')
+        # print("%d. audio file is done." % (x,))
 
     except sr.UnknownValueError:
         print("Google Speech Recognition could not understand audio")

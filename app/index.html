@@ -53,7 +53,7 @@
                 <!--/.navbar-header-->
                 <div class="notranslate" id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="#" class="scroll-top" >Home</a></li>
+                        <li><a href="#" class="scroll-top">Home</a></li>
                         <!-- <li><a href="#" class="scroll-link" data-id="Transcribe-To-Text">Transcribe To Text</a></li> -->
                         <li><a href="#" class="scroll-link" data-id="Translate-input">Translate</a></li>
                         <li><a href="#" class="scroll-link" data-id="Input-file">Input-file</a></li>
@@ -104,41 +104,6 @@
 
     <!--File input start nut khac-->
 
-    <section id="Input-file">
-        <div class="container">
-            <div class="row" style="display: flex;flex-direction: column;">
-                <div class="notranslate" style="display: flex;justify-content: space-between;">
-                    <div>
-                        <form id="uploadForm" enctype="multipart/form-data">
-                            <input type="file" accept="video/*" style="margin-bottom: 10px;" id="videoInput"
-                                name="video" />
-                            <video controls autoplay style="width: 500px; height: 400px;" id="videoPlayer"></audio>
-                        </form>
-                    </div>
-                    <i class="far fa-hand-point-right fa-5x" style="align-self:center"></i>
-                    <textarea id="transcript" placeholder="Press Start and speak into your mic" rows="5"
-                        readonly="readonly"
-                        style="align-self:center; width: 500px; border-radius: 5px; padding: 10px; margin: 0px; height: 200px;"></textarea>
-                </div>
-                <div class="notranslate"  style="display:flex;justify-content:left; margin-top: 20px;">
-                    <button type="button" onclick="uploadVideo()" style="font-size: 25px;margin-right:6px; padding: 8px; border-radius: 10px;">Upload</button>
-                    <button id="runScriptBtn" class="button-xl start-button" title="Start Transcription"
-                        style="font-size: 25px;margin-right:6px; padding: 8px; border-radius: 10px;">Run Script</button>
-                    <!-- <button id="stop-button" class="button-xl stop-button" title="Stop Transcription"
-                        style=" font-size: 25px;margin-right:6px; padding: 8px; border-radius: 10px;" disabled="true"><i
-                            class="fa fa-stop-circle"></i> Stop get
-                    </button>
-                    <button id="reset-button" class="button-xl button-secondary reset-button"
-                        style=" font-size: 25px;margin-right:6px; padding: 8px; border-radius: 10px;"
-                        title="Clear Transcript">
-                        Clear Transcript
-                    </button> -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-
     <section id="Translate-input">
         <div class="container">
             <div class="row" style="display: flex;flex-direction: column;">
@@ -155,8 +120,8 @@
 
                     <div style="display: flex;justify-content: space-between;">
 
-                        <textarea id="transcript" placeholder="Press Start and speak into your mic" rows="5"
-                            readonly="readonly"
+                        <textarea id="transcript" class="notranslate" placeholder="Press Start and speak into your mic"
+                            rows="5" readonly="readonly"
                             style="width: 500px; border-radius: 5px; padding: 10px; margin: 0px; height: 200px;"></textarea>
 
                         <i class="far fa-hand-point-right fa-5x" style="align-self:center"></i>
@@ -192,6 +157,37 @@
             </div>
         </div>
     </section>
+
+    <section id="Input-file">
+        <div class="container">
+            <div class="row" style="display: flex;flex-direction: column;">
+                <div class="notranslate" style="display: flex;justify-content: space-between;">
+                    <div>
+                        <form id="uploadForm" enctype="multipart/form-data">
+                            <input type="file" accept="video/*" style="margin-bottom: 10px;" id="videoInput"
+                                name="video" />
+                            <video controls autoplay style="width: 500px; height: 400px;" id="videoPlayer"></audio>
+                        </form>
+                    </div>
+                    <i class="far fa-hand-point-right fa-5x" style="align-self:center"></i>
+                    <textarea id="hienthi" placeholder="Press Start and speak into your mic" rows="5"
+                        readonly="readonly"
+                        style="align-self:center; width: 500px; border-radius: 5px; padding: 10px; margin: 0px; height: 200px;"></textarea>
+
+                </div>
+                <div class="notranslate" style="display:flex;justify-content:left; margin-top: 20px;">
+                    <button type="button" onclick="uploadVideo()"
+                        style="font-size: 25px;margin-right:6px; padding: 8px; border-radius: 10px;">Upload</button>
+                    <button id="runScriptBtn" class="button-xl start-button" title="Start Transcription"
+                        style="font-size: 25px;margin-right:6px; padding: 8px; border-radius: 10px;">Run Script</button>
+                    <button id="showScript" class="button-xl start-button" title="Start Transcription"
+                        style="font-size: 25px;margin-right:6px; padding: 8px; border-radius: 10px;">Show
+                        Script</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <div class="signupSection">
         <div class="info">
@@ -377,7 +373,6 @@
             })
                 .then(response => response.text())
                 .then(data => {
-                    console.log(data);
                     alert(data);
                 })
                 .catch(error => console.error('Error:', error));
@@ -385,30 +380,26 @@
     </script>
 
     <script>
+        document.getElementById('showScript').addEventListener('click', function () {
+            // Sử dụng Fetch API để đọc nội dung file output.txt từ server
+            fetch('/output-file', {
+                method: 'GET',
+            })
+                .then(response => response.text())
+                .then(data => {
+                    // Hiển thị nội dung vào textarea
+                    document.getElementById('hienthi').value = data;
+                })
+                .catch(error => console.error('Error:', error));
+        });
 
-        // // Lắng nghe sự kiện onchange của input file
-        // document.getElementById('videoInput').addEventListener('change', function (e) {
-        //     // Lấy danh sách các files được chọn
-        //     var files = e.target.files;
+    </script>
 
-        //     // Kiểm tra xem đã chọn file nào chưa
-        //     if (files.length > 0) {
-        //         // Lấy đường dẫn của file video đầu tiên
-        //         var videoPath = URL.createObjectURL(files[0]);
-
-        //         // Hiển thị đường dẫn trong thẻ div có id là 'message'
-        //         document.getElementById('message').innerText = 'Đường dẫn của video: ' + videoPath;
-
-        //         // Hiển thị video trong thẻ video có id là 'videoPlayer'
-        //         document.getElementById('videoPlayer').src = videoPath;
-        //     }
-        // });
-        // console.log(videoPath);
-
+    <script>
         function uploadVideo() {
             var formData = new FormData(document.getElementById('uploadForm'));
 
-            fetch('http://localhost:3000/upload', {
+            fetch('/upload', {
                 method: 'POST',
                 body: formData,
             })
@@ -417,12 +408,14 @@
                     alert(message);
                 })
                 .catch(error => console.error('Error:', error));
+
         }
-
     </script>
 
-    </script>
+    <script>
 
+
+    </script>
 
 </body>
 
